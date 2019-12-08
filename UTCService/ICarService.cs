@@ -16,10 +16,10 @@ namespace UTCService
         List<Car> GetCars();
 
         [OperationContract]
-        void PostCar(Car newCar);
+        void AddCar(Car newCar);
 
         [OperationContract]
-        void PutCar(Car newCar);
+        void UpdateCar(Car newCar);
 
         [OperationContract]
         void DeleteCar(int id);

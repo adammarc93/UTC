@@ -26,9 +26,7 @@ namespace UTCService
 
             try
             {
-                string Query = "SELECT * FROM [UTC].[dbo].Cars";
-
-                SqlDataAdapter sda = new SqlDataAdapter(Query, con);
+                SqlDataAdapter sda = new SqlDataAdapter("dbo.crud_CarReadAll", con);
                 sda.Fill(ds);
 
                 foreach (DataRow record in ds.Tables[0].Rows)
@@ -58,14 +56,13 @@ namespace UTCService
             return result;
         }
 
-        public void PostCar(Car newCar)
+        public void AddCar(Car newCar)
         {
             try
             {
-                string Query = @"INSERT INTO [UTC].[dbo].Cars (Brand, Model, TotalCost, YearOfProduction, Mileage, Fuel, CarType, Seats, Color, CarStatus)
-	                             VALUES (@Brand, @Model, @TotalCost, @YearOfProduction, @Mileage, @Fuel, @CarType, @Seats, @Color, @CarStatus)";
-                var cmd = new SqlCommand(Query, con);
+                var cmd = new SqlCommand("crud_CarInsert", con);
 
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Brand", newCar.Brand);
                 cmd.Parameters.AddWithValue("@Model", newCar.Model);
                 cmd.Parameters.AddWithValue("@TotalCost", newCar.TotalCost);
@@ -86,16 +83,13 @@ namespace UTCService
             }
         }
 
-        public void PutCar(Car newCar)
+        public void UpdateCar(Car newCar)
         {
             try
             {
-                string Query = "UPDATE [UTC].[dbo].Cars "
-                                + "SET Brand=@Brand, Model=@Model, TotalCost=@TotalCost, YearOfProduction=@YearOfProduction, "
-                                + "Mileage=@Mileage, Fuel=@Fuel, CarType=@CarType, Color=@Color, CarStatus=@CarStatus "
-                                + "WHERE Id=@Id";
-                var cmd = new SqlCommand(Query, con);
+                var cmd = new SqlCommand("crud_CarUpdate", con);
 
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id", newCar.Id);
                 cmd.Parameters.AddWithValue("@Brand", newCar.Brand);
                 cmd.Parameters.AddWithValue("@Model", newCar.Model);
@@ -121,9 +115,9 @@ namespace UTCService
         {
             try
             {
-                string Query = "DELETE FROM [UTC].[dbo].Cars WHERE Id=@Id";
-                var cmd = new SqlCommand(Query, con);
+                var cmd = new SqlCommand("crud_CarDelete", con);
 
+                cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id", id);
                 con.Open();
                 cmd.ExecuteNonQuery();
