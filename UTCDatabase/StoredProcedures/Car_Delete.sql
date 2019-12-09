@@ -1,0 +1,13 @@
+IF OBJECT_ID('crud_CarDelete') IS NOT NULL
+BEGIN
+	DROP PROCEDURE crud_CarDelete
+END
+GO
+CREATE PROCEDURE crud_CarDelete
+	(
+		@Id INT
+	)
+AS
+BEGIN
+	DELETE FROM [UTC].[dbo].Cars WHERE Id=@Id
+END
