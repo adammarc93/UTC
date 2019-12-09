@@ -9,29 +9,36 @@ namespace UTCServiceHost
     {
         static void Main(string[] args)
         {
-            Uri baseAddress = new Uri("http://localhost:8000/UTC/");
+            Uri carBaseAddress = new Uri("http://localhost:8000/UTC/");
+            Uri truckBaseAddress = new Uri("http://localhost:8001/UTC/");
 
-            ServiceHost selfHost = new ServiceHost(typeof(CarService), baseAddress);
+            ServiceHost carSelfHost = new ServiceHost(typeof(CarService), carBaseAddress);
+            ServiceHost truckSelfHost = new ServiceHost(typeof(TruckService), truckBaseAddress);
 
             try
             {
-                selfHost.AddServiceEndpoint(typeof(ICarService), new WSHttpBinding(), "CarService");
+                carSelfHost.AddServiceEndpoint(typeof(ICarService), new WSHttpBinding(), "CarService");
+                truckSelfHost.AddServiceEndpoint(typeof(ITruckService), new WSHttpBinding(), "TruckService");
 
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;
-                selfHost.Description.Behaviors.Add(smb);
+                carSelfHost.Description.Behaviors.Add(smb);
+                truckSelfHost.Description.Behaviors.Add(smb);
 
-                selfHost.Open();
+                carSelfHost.Open();
+                truckSelfHost.Open();
                 Console.WriteLine("The service is ready.");
 
                 Console.WriteLine("Press <Enter> to terminate the service.");
                 Console.ReadLine();
-                selfHost.Close();
+                carSelfHost.Close();
+                truckSelfHost.Close();
             }
             catch (CommunicationException ce)
             {
                 Console.WriteLine("An exception occurred: {0}", ce.Message);
-                selfHost.Abort();
+                carSelfHost.Abort();
+                truckSelfHost.Abort();
             }
         }
     }

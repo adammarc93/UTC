@@ -5,37 +5,34 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
 using System.Text;
 
 namespace UTCService
 {
-    public class CarService : ICarService
+    public class TruckService : ITruckService
     {
         private SqlConnection con;
 
-        public CarService()
+        public TruckService()
         {
             con = new SqlConnection("Data Source=DESKTOP-BSBRCG2\\LENOVOG50;Initial Catalog=UTC;User ID=sa;Password=FokaKura12!;");
         }
 
-        public void AddCar(Car newCar)
+        public void AddTruck(Truck newTruck)
         {
             try
             {
-                var cmd = new SqlCommand("crud_CarInsert", con);
+                var cmd = new SqlCommand("crud_TruckInsert", con);
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Brand", newCar.Brand);
-                cmd.Parameters.AddWithValue("@Model", newCar.Model);
-                cmd.Parameters.AddWithValue("@TotalCost", newCar.TotalCost);
-                cmd.Parameters.AddWithValue("@YearOfProduction", newCar.YearOfProduction);
-                cmd.Parameters.AddWithValue("@Mileage", newCar.Mileage);
-                cmd.Parameters.AddWithValue("@Fuel", newCar.Fuel);
-                cmd.Parameters.AddWithValue("@CarType", newCar.CarType);
-                cmd.Parameters.AddWithValue("@Seats", newCar.Seats);
-                cmd.Parameters.AddWithValue("@Color", newCar.Color);
-                cmd.Parameters.AddWithValue("@CarStatus", newCar.CarStatus);
+                cmd.Parameters.AddWithValue("@Brand", newTruck.Brand);
+                cmd.Parameters.AddWithValue("@Model", newTruck.Model);
+                cmd.Parameters.AddWithValue("@TotalCost", newTruck.TotalCost);
+                cmd.Parameters.AddWithValue("@YearOfProduction", newTruck.YearOfProduction);
+                cmd.Parameters.AddWithValue("@Mileage", newTruck.Mileage);
+                cmd.Parameters.AddWithValue("@Fuel", newTruck.Fuel);
+                cmd.Parameters.AddWithValue("@Color", newTruck.Color);
+                cmd.Parameters.AddWithValue("@CarStatus", newTruck.CarStatus);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
@@ -46,11 +43,11 @@ namespace UTCService
             }
         }
 
-        public void DeleteCar(int id)
+        public void DeleteTruck(int id)
         {
             try
             {
-                var cmd = new SqlCommand("crud_CarDelete", con);
+                var cmd = new SqlCommand("crud_TruckDelete", con);
 
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@Id", id);
@@ -64,19 +61,19 @@ namespace UTCService
             }
         }
 
-        public List<Car> GetCars()
+        public List<Truck> GetTrucks()
         {
             var ds = new DataSet();
-            var result = new List<Car>();
+            var result = new List<Truck>();
 
             try
             {
-                SqlDataAdapter sda = new SqlDataAdapter("dbo.crud_CarReadAll", con);
+                SqlDataAdapter sda = new SqlDataAdapter("dbo.crud_TruckReadAll", con);
                 sda.Fill(ds);
 
                 foreach (DataRow record in ds.Tables[0].Rows)
                 {
-                    result.Add(new Car
+                    result.Add(new Truck
                     {
                         Id = Convert.ToInt32(record["Id"]),
                         Brand = Convert.ToString(record["Brand"]),
@@ -85,8 +82,6 @@ namespace UTCService
                         YearOfProduction = Convert.ToInt32(record["YearOfProduction"]),
                         Mileage = Convert.ToInt32(record["Mileage"]),
                         Fuel = Convert.ToString(record["Fuel"]),
-                        CarType = Convert.ToString(record["CarType"]),
-                        Seats = Convert.ToInt32(record["Seats"]),
                         Color = Convert.ToString(record["Color"]),
                         CarStatus = Convert.ToString(record["CarStatus"])
                     });
@@ -100,24 +95,22 @@ namespace UTCService
             return result;
         }
 
-        public void UpdateCar(Car newCar)
+        public void UpdateTruck(Truck newTruck)
         {
             try
             {
-                var cmd = new SqlCommand("crud_CarUpdate", con);
+                var cmd = new SqlCommand("crud_TruckUpdate", con);
 
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.AddWithValue("@Id", newCar.Id);
-                cmd.Parameters.AddWithValue("@Brand", newCar.Brand);
-                cmd.Parameters.AddWithValue("@Model", newCar.Model);
-                cmd.Parameters.AddWithValue("@TotalCost", newCar.TotalCost);
-                cmd.Parameters.AddWithValue("@YearOfProduction", newCar.YearOfProduction);
-                cmd.Parameters.AddWithValue("@Mileage", newCar.Mileage);
-                cmd.Parameters.AddWithValue("@Fuel", newCar.Fuel);
-                cmd.Parameters.AddWithValue("@CarType", newCar.CarType);
-                cmd.Parameters.AddWithValue("@Seats", newCar.Seats);
-                cmd.Parameters.AddWithValue("@Color", newCar.Color);
-                cmd.Parameters.AddWithValue("@CarStatus", newCar.CarStatus);
+                cmd.Parameters.AddWithValue("@Id", newTruck.Id);
+                cmd.Parameters.AddWithValue("@Brand", newTruck.Brand);
+                cmd.Parameters.AddWithValue("@Model", newTruck.Model);
+                cmd.Parameters.AddWithValue("@TotalCost", newTruck.TotalCost);
+                cmd.Parameters.AddWithValue("@YearOfProduction", newTruck.YearOfProduction);
+                cmd.Parameters.AddWithValue("@Mileage", newTruck.Mileage);
+                cmd.Parameters.AddWithValue("@Fuel", newTruck.Fuel);
+                cmd.Parameters.AddWithValue("@Color", newTruck.Color);
+                cmd.Parameters.AddWithValue("@CarStatus", newTruck.CarStatus);
                 con.Open();
                 cmd.ExecuteNonQuery();
                 con.Close();
