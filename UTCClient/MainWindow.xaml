@@ -9,18 +9,17 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="500" Width="800">    
     <Grid>
-        <TabControl Margin="10">  
+        <TabControl Margin="10">
             <TabItem Header="Cars">
                 <TabItem.ContentTemplate>
-                    <DataTemplate 
+                    <DataTemplate
                         x:Name="carViewTemplate"
                         DataType="{x:Type viewmodels:CarViewModel}">
                         <views:CarView DataContext="{Binding}" />
                     </DataTemplate>
                 </TabItem.ContentTemplate>
             </TabItem>
-            <TabItem Header="Trucks" 
-                     Initialized="TruckTabItem_Initialized">
+            <TabItem Header="Trucks">
                 <TabItem.ContentTemplate>
                     <DataTemplate 
                         x:Name="truckViewTemplate"

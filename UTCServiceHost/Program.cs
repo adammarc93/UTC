@@ -9,16 +9,16 @@ namespace UTCServiceHost
     {
         static void Main(string[] args)
         {
-            Uri carBaseAddress = new Uri("http://localhost:8000/UTC/");
-            Uri truckBaseAddress = new Uri("http://localhost:8001/UTC/");
+            Uri carBaseAddress = new Uri("http://localhost:8000/CarService.svc/");
+            Uri truckBaseAddress = new Uri("http://localhost:8000/TruckService.svc/");
 
             ServiceHost carSelfHost = new ServiceHost(typeof(CarService), carBaseAddress);
             ServiceHost truckSelfHost = new ServiceHost(typeof(TruckService), truckBaseAddress);
 
             try
             {
-                carSelfHost.AddServiceEndpoint(typeof(ICarService), new WSHttpBinding(), "CarService");
-                truckSelfHost.AddServiceEndpoint(typeof(ITruckService), new WSHttpBinding(), "TruckService");
+                carSelfHost.AddServiceEndpoint(typeof(ICarService), new BasicHttpBinding(), "CarService");
+                truckSelfHost.AddServiceEndpoint(typeof(ITruckService), new BasicHttpBinding(), "TruckService");
 
                 ServiceMetadataBehavior smb = new ServiceMetadataBehavior();
                 smb.HttpGetEnabled = true;

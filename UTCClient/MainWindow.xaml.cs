@@ -16,24 +16,11 @@ using UTCClient.ViewModels;
 
 namespace UTCClient
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-        private void CarTabItem_Initialized(object sender, EventArgs e)
-        {
-            //DataContext = new CarViewModel();
-        }
-
-        private void TruckTabItem_Initialized(object sender, EventArgs e)
-        {
-            //DataContext = new TruckViewModel();
         }
     }
 }
