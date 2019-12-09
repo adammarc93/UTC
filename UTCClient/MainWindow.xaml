@@ -1,0 +1,34 @@
+﻿<Window x:Class="UTCClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UTCClient"
+        xmlns:viewmodels="clr-namespace:UTCClient.ViewModels"
+        xmlns:views="clr-namespace:UTCClient.Views"        
+        mc:Ignorable="d"
+        Title="MainWindow" Height="500" Width="800">    
+    <Grid>
+        <TabControl Margin="10">  
+            <TabItem Header="Cars">
+                <TabItem.ContentTemplate>
+                    <DataTemplate 
+                        x:Name="carViewTemplate"
+                        DataType="{x:Type viewmodels:CarViewModel}">
+                        <views:CarView DataContext="{Binding}" />
+                    </DataTemplate>
+                </TabItem.ContentTemplate>
+            </TabItem>
+            <TabItem Header="Trucks" 
+                     Initialized="TruckTabItem_Initialized">
+                <TabItem.ContentTemplate>
+                    <DataTemplate 
+                        x:Name="truckViewTemplate"
+                        DataType="{x:Type viewmodels:TruckViewModel}">
+                        <views:TruckView DataContext="{Binding}" />
+                    </DataTemplate>
+                </TabItem.ContentTemplate>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
