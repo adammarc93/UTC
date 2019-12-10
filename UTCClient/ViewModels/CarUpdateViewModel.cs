@@ -1,4 +1,5 @@
 ﻿using UTCClient.Mappers;
+using UTCClient.Models;
 
 namespace UTCClient.ViewModels
 {
@@ -11,7 +12,7 @@ namespace UTCClient.ViewModels
             client = new CarServiceClient();
         }
 
-        public async void UpdateCar(Models.Car car)
+        public async void UpdateCar(Car car)
         {
             CarMapper mapper = new CarMapper();
             var uptadeCar = mapper.MapToServiceModel(car);
