@@ -13,7 +13,7 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="5*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1.5*"/>
         </Grid.RowDefinitions>
 
         <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -53,7 +53,7 @@
                   Grid.Column="1"
                   Grid.Row="0"
                   Margin="5"
-                  ItemsSource="{Binding TrukcsCollection}"
+                  ItemsSource="{Binding TrucksColections}"
                   ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.View>
                 <GridView>
@@ -85,15 +85,29 @@
                     Height="20"
                     Margin="5"
                     Click="DeleteButton_Click"/>
-            <Button Name="RefreshButton"
-                Content="Refresh"
-                Width="100"
-                Height="20"
+            <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <Button Name="RefreshButton"
+                    Content="Refresh"
+                    Width="100"
+                    Height="20"
+                    Margin="5"
+                    Click="RefreshButton_Click"/>
+                <Button Name="SaveButton"
+                    Content="Save to csv"
+                    Width="100"
+                    Height="20"
+                    Margin="5"
+                    Click="SaveButton_Click"/>
+            </StackPanel>
+            <StackPanel Width="200"
                 Margin="5"
-                Click="RefreshButton_Click"/>
-            <StackPanel Width="200">
-                <ComboBox Name="SearchComboBox"/>
-                <TextBox Name="SearchTextBox"/>
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+                <ComboBox Name="SearchComboBox"
+                    Margin="5"/>
+                <TextBox Name="SearchTextBox"
+                    Margin="5"/>
                 <Button Name="Search" 
                     Content="Search" 
                     Width="100"

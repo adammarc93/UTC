@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -119,6 +120,21 @@ namespace UTCClient.Views
             {
                 CarsCollection.Add(car);
             }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            var fileName = String.Format("{0}_Cars.csv", DateTime.Now.ToString()).Replace(' ', '_').Replace(':', '_').Replace('-', '_');
+            StreamWriter file = new StreamWriter(fileName, false, Encoding.Default);
+
+            foreach (var car in CarsCollection)
+            {
+                file.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7};{8};{9}", car.Brand, car.Model, car.TotalCost, car.YearOfProduction,
+                               car.Mileage, car.Fuel, car.CarType, car.Seats, car.Color, car.CarStatus);
+            }
+
+            file.Close();
+            MessageBox.Show("List has been saved.", "Saved List");
         }
 
         private List<Car> CompareTextWithListValues(string text, List<Car> list)

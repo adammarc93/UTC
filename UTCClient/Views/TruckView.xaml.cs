@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,7 +22,7 @@ namespace UTCClient.Views
 {
     public partial class TruckView : UserControl
     {
-        public ObservableCollection<Truck> TrukcsCollection { get; set; }
+        public ObservableCollection<Truck> TrucksColections { get; set; }
 
         private TruckViewModel viewModel;
 
@@ -30,18 +31,18 @@ namespace UTCClient.Views
             InitializeComponent();
             DataContext = this;
             viewModel = new TruckViewModel();
-            TrukcsCollection = new ObservableCollection<Truck>();
+            TrucksColections = new ObservableCollection<Truck>();
             SearchComboBox.ItemsSource = Enum.GetValues(typeof(TruckColumns));
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.GetTrucks();
-            TrukcsCollection.Clear();
+            TrucksColections.Clear();
 
             foreach (var truck in viewModel.Trucks)
             {
-                TrukcsCollection.Add(truck);
+                TrucksColections.Add(truck);
             }
         }
 
@@ -78,7 +79,7 @@ namespace UTCClient.Views
         {
             try
             {
-                var id = TrukcsCollection.ElementAt(TruckListView.SelectedIndex).Id;
+                var id = TrucksColections.ElementAt(TruckListView.SelectedIndex).Id;
 
                 viewModel.DeleteTruck(id);
                 MessageBox.Show("Record has been deleted.", "Delete Truck");
@@ -93,7 +94,7 @@ namespace UTCClient.Views
         {
             try
             {
-                var truck = TrukcsCollection.ElementAt(TruckListView.SelectedIndex);
+                var truck = TrucksColections.ElementAt(TruckListView.SelectedIndex);
 
                 TruckUpdateView updateWindow = new TruckUpdateView(truck);
                 updateWindow.Show();
@@ -110,12 +111,27 @@ namespace UTCClient.Views
             var newList = new List<Truck>();
 
             newList = CompareTextWithListValues(text, newList);
-            TrukcsCollection.Clear();
+            TrucksColections.Clear();
 
             foreach (var truck in newList)
             {
-                TrukcsCollection.Add(truck);
+                TrucksColections.Add(truck);
             }
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            var fileName = String.Format("{0}_Truck.csv", DateTime.Now.ToString()).Replace(' ', '_').Replace(':', '_').Replace('-', '_');
+            StreamWriter file = new StreamWriter(fileName, false, Encoding.Default);
+
+            foreach (var truck in TrucksColections)
+            {
+                file.WriteLine("{0};{1};{2};{3};{4};{5};{6};{7}", truck.Brand, truck.Model, truck.TotalCost, truck.YearOfProduction,
+                               truck.Mileage, truck.Fuel, truck.Color, truck.CarStatus);
+            }
+
+            file.Close();
+            MessageBox.Show("List has been saved.", "Saved List");
         }
 
         private List<Truck> CompareTextWithListValues(string text, List<Truck> list)
