@@ -57,7 +57,7 @@
                   Grid.Column="1"
                   Grid.Row="0"
                   Margin="5"
-                  ItemsSource="{Binding CarCollection}"
+                  ItemsSource="{Binding CarsCollection}"
                   ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.View>
                 <GridView>
@@ -104,7 +104,8 @@
                     Content="Search" 
                     Width="100"
                     Height="20"
-                    Margin="5"/>
+                    Margin="5"
+                    Click="SearchButton_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

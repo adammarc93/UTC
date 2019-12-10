@@ -98,7 +98,8 @@
                     Content="Search" 
                     Width="100"
                     Height="20"
-                    Margin="5"/>
+                    Margin="5"
+                    Click="SearchButton_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UTCClient.Enums;
 using UTCClient.Models;
 using UTCClient.ViewModels;
 
@@ -20,7 +22,7 @@ namespace UTCClient.Views
 {
     public partial class CarView : UserControl
     {
-        public ObservableCollection<Car> CarCollection { get; set; }
+        public ObservableCollection<Car> CarsCollection { get; set; }
 
         private CarViewModel viewModel;
 
@@ -29,17 +31,18 @@ namespace UTCClient.Views
             InitializeComponent();
             DataContext = this;
             viewModel = new CarViewModel();
-            CarCollection = new ObservableCollection<Car>();
+            CarsCollection = new ObservableCollection<Car>();
+            SearchComboBox.ItemsSource = Enum.GetValues(typeof(CarColumns));
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             viewModel.GetCars();
-            CarCollection.Clear();
+            CarsCollection.Clear();
 
             foreach (var car in viewModel.Cars)
             {
-                CarCollection.Add(car);
+                CarsCollection.Add(car);
             }
         }
 
@@ -78,7 +81,7 @@ namespace UTCClient.Views
         {
             try
             {
-                var id = CarCollection.ElementAt(CarListView.SelectedIndex).Id;
+                var id = CarsCollection.ElementAt(CarListView.SelectedIndex).Id;
 
                 viewModel.DeleteCar(id);
                 MessageBox.Show("Record has been deleted.", "Delete Car");
@@ -93,7 +96,7 @@ namespace UTCClient.Views
         {
             try
             {
-                var car = CarCollection.ElementAt(CarListView.SelectedIndex);
+                var car = CarsCollection.ElementAt(CarListView.SelectedIndex);
 
                 CarUpdateView updateWindow = new CarUpdateView(car);
                 updateWindow.Show();
@@ -102,6 +105,61 @@ namespace UTCClient.Views
             {
                 MessageBox.Show("First you have to select character you want to update.", "Delete Car");
             }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            var text = SearchTextBox.Text;
+            var newList = new List<Car>();
+
+            newList = CompareTextWithListValues(text, newList);
+            CarsCollection.Clear();
+
+            foreach (var car in newList)
+            {
+                CarsCollection.Add(car);
+            }
+        }
+
+        private List<Car> CompareTextWithListValues(string text, List<Car> list)
+        {
+            switch (SearchComboBox.SelectedItem)
+            {
+                case CarColumns.Brand:
+                    list = viewModel.Cars.Where(x => x.Brand.Contains(text)).ToList();
+                    break;
+                case CarColumns.Model:
+                    list = viewModel.Cars.Where(x => x.Model.Contains(text)).ToList();
+                    break;
+                case CarColumns.TotalCost:
+                    list = viewModel.Cars.Where(x => x.TotalCost.ToString().Contains(text)).ToList();
+                    break;
+                case CarColumns.YearOfProduction:
+                    list = viewModel.Cars.Where(x => x.YearOfProduction.ToString().Contains(text)).ToList();
+                    break;
+                case CarColumns.Mileage:
+                    list = viewModel.Cars.Where(x => x.Mileage.ToString().Contains(text)).ToList();
+                    break;
+                case CarColumns.Fuel:
+                    list = viewModel.Cars.Where(x => x.Fuel.Contains(text)).ToList();
+                    break;
+                case CarColumns.CarType:
+                    list = viewModel.Cars.Where(x => x.CarType.Contains(text)).ToList();
+                    break;
+                case CarColumns.Seats:
+                    list = viewModel.Cars.Where(x => x.Seats.ToString().Contains(text)).ToList();
+                    break;
+                case CarColumns.Color:
+                    list = viewModel.Cars.Where(x => x.Color.Contains(text)).ToList();
+                    break;
+                case CarColumns.CarStatus:
+                    list = viewModel.Cars.Where(x => x.CarStatus.Contains(text)).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            return list;
         }
     }
 }

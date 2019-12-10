@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UTCClient.Enums;
 using UTCClient.Models;
 using UTCClient.ViewModels;
 
@@ -30,6 +31,7 @@ namespace UTCClient.Views
             DataContext = this;
             viewModel = new TruckViewModel();
             TrukcsCollection = new ObservableCollection<Truck>();
+            SearchComboBox.ItemsSource = Enum.GetValues(typeof(TruckColumns));
         }
 
         private void RefreshButton_Click(object sender, RoutedEventArgs e)
@@ -100,6 +102,55 @@ namespace UTCClient.Views
             {
                 MessageBox.Show("First you have to select character you want to update.", "Delete Truck");
             }
+        }
+
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            var text = SearchTextBox.Text;
+            var newList = new List<Truck>();
+
+            newList = CompareTextWithListValues(text, newList);
+            TrukcsCollection.Clear();
+
+            foreach (var truck in newList)
+            {
+                TrukcsCollection.Add(truck);
+            }
+        }
+
+        private List<Truck> CompareTextWithListValues(string text, List<Truck> list)
+        {
+            switch (SearchComboBox.SelectedItem)
+            {
+                case TruckColumns.Brand:
+                    list = viewModel.Trucks.Where(x => x.Brand.Contains(text)).ToList();
+                    break;
+                case TruckColumns.Model:
+                    list = viewModel.Trucks.Where(x => x.Model.Contains(text)).ToList();
+                    break;
+                case TruckColumns.TotalCost:
+                    list = viewModel.Trucks.Where(x => x.TotalCost.ToString().Contains(text)).ToList();
+                    break;
+                case TruckColumns.YearOfProduction:
+                    list = viewModel.Trucks.Where(x => x.YearOfProduction.ToString().Contains(text)).ToList();
+                    break;
+                case TruckColumns.Mileage:
+                    list = viewModel.Trucks.Where(x => x.Mileage.ToString().Contains(text)).ToList();
+                    break;
+                case TruckColumns.Fuel:
+                    list = viewModel.Trucks.Where(x => x.Fuel.Contains(text)).ToList();
+                    break;
+                case TruckColumns.Color:
+                    list = viewModel.Trucks.Where(x => x.Color.Contains(text)).ToList();
+                    break;
+                case TruckColumns.CarStatus:
+                    list = viewModel.Trucks.Where(x => x.CarStatus.Contains(text)).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            return list;
         }
     }
 }
