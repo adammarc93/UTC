@@ -98,7 +98,7 @@ namespace UTCClient.Views
             }
             catch (ArgumentException)
             {
-                MessageBox.Show("First you have to select character you want to update.", "Delete Car");
+                MessageBox.Show("First you have to select character you want to update.", "Delete Truck");
             }
         }
     }

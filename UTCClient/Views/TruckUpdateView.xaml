@@ -26,6 +26,7 @@
                 <TextBox Name="MileageTextBox"/>
                 <Label Content="Fuel"/>
                 <TextBox Name="FuelTextBox"/>
+                <Label Content="Color"/>
                 <TextBox Name="ColorTextBox"/>
                 <Label Content="Truck Status"/>
                 <TextBox Name="CarStatusTextBox"/>
