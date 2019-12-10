@@ -9,7 +9,7 @@ namespace UTCClient.Models
     public class Truck : Vehicle
     {
         public Truck(string brand, string model, int totalCost, int yearOfProduction, int mileage,
-                   string fuel, string carType, int seats, string color, string carStatus)
+                   string fuel, string color, string carStatus)
         {
             base.Brand = brand;
             base.Model = model;
@@ -18,11 +18,11 @@ namespace UTCClient.Models
             base.Mileage = mileage;
             base.Fuel = fuel;
             base.Color = color;
-            base.CarStatus = CarStatus;
+            base.CarStatus = carStatus;
         }
 
         public Truck(int id, string brand, string model, int totalCost, int yearOfProduction, int mileage,
-                   string fuel, string carType, int seats, string color, string carStatus)
+                   string fuel, string color, string carStatus)
         {
             base.Id = id;
             base.Brand = brand;
@@ -32,7 +32,7 @@ namespace UTCClient.Models
             base.Mileage = mileage;
             base.Fuel = fuel;
             base.Color = color;
-            base.CarStatus = CarStatus;
+            base.CarStatus = carStatus;
         }
     }
 }

@@ -33,7 +33,7 @@
                 <TextBox Name="FuelTextBox"/>
                 <Label Content="Color"/>
                 <TextBox Name="ColorTextBox"/>
-                <Label Content="CarStatus"/>
+                <Label Content="Car Status"/>
                 <TextBox Name="CarStatusTextBox"/>
             </StackPanel>
         </ScrollViewer>
@@ -45,24 +45,26 @@
                     Content="Add" 
                     Width="100" 
                     Height="20"
-                    Margin="5"/>
+                    Margin="5"
+                    Click="AddButton_Click"/>
         </StackPanel>
 
-        <ListView Name="CarListView"  
+        <ListView Name="TruckListView"
                   Grid.Column="1"
                   Grid.Row="0"
                   Margin="5"
+                  ItemsSource="{Binding TrukcsCollection}"
                   ScrollViewer.VerticalScrollBarVisibility="Visible">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header=" Brand "/>
-                    <GridViewColumn Header=" Model "/>
-                    <GridViewColumn Header=" Total Cost "/>
-                    <GridViewColumn Header=" Year Of Production "/>
-                    <GridViewColumn Header=" Mileage "/>
-                    <GridViewColumn Header=" Fuel "/>
-                    <GridViewColumn Header=" Color "/>
-                    <GridViewColumn Header=" Truck Status "/>
+                    <GridViewColumn Header=" Brand " DisplayMemberBinding="{Binding Brand}"/>
+                    <GridViewColumn Header=" Model " DisplayMemberBinding="{Binding Model}"/>
+                    <GridViewColumn Header=" Total Cost " DisplayMemberBinding="{Binding TotalCost}"/>
+                    <GridViewColumn Header=" Year Of Production " DisplayMemberBinding="{Binding YearOfProduction}"/>
+                    <GridViewColumn Header=" Mileage " DisplayMemberBinding="{Binding Mileage}"/>
+                    <GridViewColumn Header=" Fuel " DisplayMemberBinding="{Binding Fuel}"/>
+                    <GridViewColumn Header=" Color " DisplayMemberBinding="{Binding Color}"/>
+                    <GridViewColumn Header=" Truck Status " DisplayMemberBinding="{Binding CarStatus}"/>
                 </GridView>
             </ListView.View>
         </ListView>
@@ -71,16 +73,24 @@
                     Grid.Row="1"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center">
-            <Button Name="DeleteAddButton" 
+            <Button Name="UpdateButton"
                     Content="Update" 
                     Width="100" 
                     Height="20"
-                    Margin="5"/>
-            <Button Name="UpdateAddButton" 
+                    Margin="5"
+                    Click="UpdateButton_Click"/>
+            <Button Name="DeleteButton"
                     Content="Delete" 
                     Width="100"
                     Height="20"
-                    Margin="5"/>
+                    Margin="5"
+                    Click="DeleteButton_Click"/>
+            <Button Name="RefreshButton"
+                Content="Refresh"
+                Width="100"
+                Height="20"
+                Margin="5"
+                Click="RefreshButton_Click"/>
             <StackPanel Width="200">
                 <ComboBox Name="SearchComboBox"/>
                 <TextBox Name="SearchTextBox"/>

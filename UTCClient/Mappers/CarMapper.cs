@@ -20,6 +20,7 @@ namespace UTCClient.Mappers
             car.Fuel = _car.Fuel;
             car.Mileage = _car.Mileage;
             car.Model = _car.Model;
+            car.Seats = _car.Seats;
             car.TotalCost = _car.TotalCost;
             car.YearOfProduction = _car.YearOfProduction;
 

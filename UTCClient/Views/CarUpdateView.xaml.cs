@@ -16,12 +16,12 @@ using UTCClient.ViewModels;
 
 namespace UTCClient.Views
 {
-    public partial class UpdateView : Window
+    public partial class CarUpdateView : Window
     {
         private CarUpdateViewModel viewModel;
         private int Id;
 
-        public UpdateView(Models.Car updateCar)
+        public CarUpdateView(Car updateCar)
         {
             InitializeComponent();
             viewModel = new CarUpdateViewModel();

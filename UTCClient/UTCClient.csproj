@@ -57,6 +57,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Connected Services\TruckServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Mappers\TruckMapper.cs" />
     <Compile Include="Service\CarService.cs" />
     <Compile Include="Connected Services\CarServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -67,17 +73,22 @@
     <Compile Include="Models\Car.cs" />
     <Compile Include="Models\Truck.cs" />
     <Compile Include="Models\Vehicle.cs" />
+    <Compile Include="Service\TruckService.cs" />
     <Compile Include="ViewModels\CarViewModel.cs" />
+    <Compile Include="ViewModels\TruckUpdateViewModel.cs" />
     <Compile Include="ViewModels\TruckViewModel.cs" />
     <Compile Include="ViewModels\CarUpdateViewModel.cs" />
     <Compile Include="Views\CarView.xaml.cs">
       <DependentUpon>CarView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\TruckUpdateView.xaml.cs">
+      <DependentUpon>TruckUpdateView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\TruckView.xaml.cs">
       <DependentUpon>TruckView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UpdateView.xaml.cs">
-      <DependentUpon>UpdateView.xaml</DependentUpon>
+    <Compile Include="Views\CarUpdateView.xaml.cs">
+      <DependentUpon>CarUpdateView.xaml</DependentUpon>
     </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -95,11 +106,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\TruckUpdateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TruckView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UpdateView.xaml">
+    <Page Include="Views\CarUpdateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -135,6 +150,19 @@
     <None Include="Connected Services\CarServiceReference\UTCClient.CarServiceReference.Car.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Connected Services\TruckServiceReference\TruckService.wsdl" />
+    <None Include="Connected Services\TruckServiceReference\TruckService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TruckServiceReference\TruckService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TruckServiceReference\TruckService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\TruckServiceReference\UTCClient.TruckServiceReference.Truck.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -148,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CarServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\TruckServiceReference\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CarServiceReference\CarService.disco" />
@@ -160,6 +189,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\CarServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TruckServiceReference\TruckService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TruckServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TruckServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\TruckServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

@@ -25,5 +25,18 @@ namespace UTCClient.Models
         public string Color { get; set; }
 
         public string CarStatus { get; set; }
+
+        public virtual bool IsEmpty()
+        {
+            if (Brand == "" && CarStatus == "" && Color == "" && Fuel == "" &&
+                Mileage == 0 && Model == "" && TotalCost == 0 && YearOfProduction == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
     }
 }

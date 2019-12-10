@@ -43,7 +43,7 @@ namespace UTCClient.Views
             }
         }
 
-        private void CarAddButton_Click(object sender, RoutedEventArgs e)
+        private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             var brand = !String.IsNullOrEmpty(BarndTextBox.Text) ? BarndTextBox.Text : "";
             var model = !String.IsNullOrEmpty(ModelTextBox.Text) ? ModelTextBox.Text : "";
@@ -74,7 +74,7 @@ namespace UTCClient.Views
             MessageBox.Show("Record has been added.", "Added Car");
         }
 
-        private void DeleteAddButton_Click(object sender, RoutedEventArgs e)
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
@@ -89,13 +89,13 @@ namespace UTCClient.Views
             }
         }
 
-        private void UpdateAddButton_Click(object sender, RoutedEventArgs e)
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 var car = CarCollection.ElementAt(CarListView.SelectedIndex);
 
-                UpdateView updateWindow = new UpdateView(car);
+                CarUpdateView updateWindow = new CarUpdateView(car);
                 updateWindow.Show();
             }
             catch (ArgumentException)

@@ -31,13 +31,13 @@
                 <TextBox Name="MileageTextBox"/>
                 <Label Content="Fuel"/>
                 <TextBox Name="FuelTextBox"/>
-                <Label Content="CarType"/>
+                <Label Content="Car Type"/>
                 <TextBox Name="CarTypeTextBox"/>
                 <Label Content="Seats"/>
                 <TextBox Name="SeatsTextBox"/>
                 <Label Content="Color"/>
                 <TextBox Name="ColorTextBox"/>
-                <Label Content="CarStatus"/>
+                <Label Content="Car Status"/>
                 <TextBox Name="CarStatusTextBox"/>
             </StackPanel>
         </ScrollViewer>
@@ -50,7 +50,7 @@
                     Width="100" 
                     Height="20"
                     Margin="5"
-                    Click="CarAddButton_Click"/>
+                    Click="AddButton_Click"/>
         </StackPanel>
 
         <ListView Name="CarListView"  
@@ -79,21 +79,24 @@
             Grid.Row="1"
             Orientation="Horizontal"
             HorizontalAlignment="Center">
-            <Button Name="UpdateAddButton"
+            <Button Name="UpdateButton"
                 Content="Update" 
                 Width="100" 
                 Height="20"
-                Margin="5" Click="UpdateAddButton_Click"/>
-            <Button Name="DeleteAddButton"
+                Margin="5"
+                Click="UpdateButton_Click"/>
+            <Button Name="DeleteButton"
                 Content="Delete" 
                 Width="100"
                 Height="20"
-                Margin="5" Click="DeleteAddButton_Click"/>
+                Margin="5"
+                Click="DeleteButton_Click"/>
             <Button Name="RefreshButton"
                 Content="Refresh"
                 Width="100"
                 Height="20"
-                Margin="5" Click="RefreshButton_Click"/>
+                Margin="5"
+                Click="RefreshButton_Click"/>
             <StackPanel Width="200">
                 <ComboBox Name="SearchComboBox"/>
                 <TextBox Name="SearchTextBox"/>

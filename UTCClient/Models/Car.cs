@@ -43,7 +43,7 @@ namespace UTCClient.Models
             base.CarStatus = carStatus;
         }
 
-        public bool IsEmpty()
+        public override bool IsEmpty()
         {
             if (base.Brand == "" && base.CarStatus == "" && this.CarType == "" && base.Color == "" && base.Fuel == "" &&
                 base.Mileage == 0 && base.Model == "" && this.Seats == 0 && base.TotalCost == 0 && base.YearOfProduction == 0)

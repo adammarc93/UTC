@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="1d07764a-fe88-4fcc-8f9c-e05f04932a56" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:49766/TruckService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TruckService.xsd" MetadataType="Schema" ID="aa6ae051-6ce5-4ff9-9304-91cfae3a34b4" SourceId="1" SourceUrl="http://localhost:49766/TruckService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TruckService.wsdl" MetadataType="Wsdl" ID="dc471483-487d-4929-84ab-1b5a78d4a3a7" SourceId="1" SourceUrl="http://localhost:49766/TruckService.svc?wsdl" />
+    <MetadataFile FileName="TruckService.disco" MetadataType="Disco" ID="9fabd6aa-b4e7-438b-8b79-f183d1996458" SourceId="1" SourceUrl="http://localhost:49766/TruckService.svc?disco" />
+    <MetadataFile FileName="TruckService1.xsd" MetadataType="Schema" ID="d5028e1f-6aa9-43aa-9101-fd4857db5a94" SourceId="1" SourceUrl="http://localhost:49766/TruckService.svc?xsd=xsd2" />
+    <MetadataFile FileName="TruckService2.xsd" MetadataType="Schema" ID="fee3df10-832f-4ab1-88b6-e16d3e7b3890" SourceId="1" SourceUrl="http://localhost:49766/TruckService.svc?xsd=xsd0" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
