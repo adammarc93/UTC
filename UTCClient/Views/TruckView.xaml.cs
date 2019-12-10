@@ -41,16 +41,26 @@ namespace UTCClient.Views
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var brand = !String.IsNullOrEmpty(BarndTextBox.Text) ? BarndTextBox.Text : "";
-            var model = !String.IsNullOrEmpty(ModelTextBox.Text) ? ModelTextBox.Text : "";
-            var totalCost = Convert.ToInt32(!String.IsNullOrEmpty(TotalCostTextBox.Text) ? TotalCostTextBox.Text : null);
-            var yearOfProduction = Convert.ToInt32(!String.IsNullOrEmpty(YearOfProductionTextBox.Text) ? YearOfProductionTextBox.Text : null);
-            var mileage = Convert.ToInt32(!String.IsNullOrEmpty(MileageTextBox.Text) ? MileageTextBox.Text : null);
-            string fuel = !String.IsNullOrEmpty(FuelTextBox.Text) ? FuelTextBox.Text : "";
-            string color = !String.IsNullOrEmpty(ColorTextBox.Text) ? ColorTextBox.Text : "";
-            string carStatus = !String.IsNullOrEmpty(CarStatusTextBox.Text) ? CarStatusTextBox.Text : "";
+            Truck truck;
 
-            Truck truck = new Truck(brand, model, totalCost, yearOfProduction, mileage, fuel, color, carStatus);
+            try
+            {
+                var brand = !String.IsNullOrEmpty(BarndTextBox.Text) ? BarndTextBox.Text : "";
+                var model = !String.IsNullOrEmpty(ModelTextBox.Text) ? ModelTextBox.Text : "";
+                var totalCost = Convert.ToInt32(!String.IsNullOrEmpty(TotalCostTextBox.Text) ? TotalCostTextBox.Text : null);
+                var yearOfProduction = Convert.ToInt32(!String.IsNullOrEmpty(YearOfProductionTextBox.Text) ? YearOfProductionTextBox.Text : null);
+                var mileage = Convert.ToInt32(!String.IsNullOrEmpty(MileageTextBox.Text) ? MileageTextBox.Text : null);
+                string fuel = !String.IsNullOrEmpty(FuelTextBox.Text) ? FuelTextBox.Text : "";
+                string color = !String.IsNullOrEmpty(ColorTextBox.Text) ? ColorTextBox.Text : "";
+                string carStatus = !String.IsNullOrEmpty(CarStatusTextBox.Text) ? CarStatusTextBox.Text : "";
+
+                truck = new Truck(brand, model, totalCost, yearOfProduction, mileage, fuel, color, carStatus);
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid data format.", "Added Truck");
+                return;
+            }
 
             if (truck.IsEmpty())
             {
@@ -160,6 +170,18 @@ namespace UTCClient.Views
             }
 
             return list;
+        }
+
+        private void ClearTextBoxes()
+        {
+            BarndTextBox.Text = null;
+            ModelTextBox.Text = null;
+            TotalCostTextBox.Text = null;
+            YearOfProductionTextBox.Text = null;
+            MileageTextBox.Text = null;
+            FuelTextBox.Text = null;
+            ColorTextBox.Text = null;
+            CarStatusTextBox.Text = null;
         }
     }
 }

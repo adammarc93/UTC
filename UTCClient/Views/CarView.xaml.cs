@@ -41,18 +41,28 @@ namespace UTCClient.Views
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            var brand = !String.IsNullOrEmpty(BarndTextBox.Text) ? BarndTextBox.Text : "";
-            var model = !String.IsNullOrEmpty(ModelTextBox.Text) ? ModelTextBox.Text : "";
-            var totalCost = Convert.ToInt32(!String.IsNullOrEmpty(TotalCostTextBox.Text) ? TotalCostTextBox.Text : null);
-            var yearOfProduction = Convert.ToInt32(!String.IsNullOrEmpty(YearOfProductionTextBox.Text) ? YearOfProductionTextBox.Text : null);
-            var mileage = Convert.ToInt32(!String.IsNullOrEmpty(MileageTextBox.Text) ? MileageTextBox.Text : null);
-            string fuel = !String.IsNullOrEmpty(FuelTextBox.Text) ? FuelTextBox.Text : "";
-            string carType = !String.IsNullOrEmpty(CarTypeTextBox.Text) ? CarTypeTextBox.Text : "";
-            int seats = Convert.ToInt32(!String.IsNullOrEmpty(SeatsTextBox.Text) ? SeatsTextBox.Text : null);
-            string color = !String.IsNullOrEmpty(ColorTextBox.Text) ? ColorTextBox.Text : "";
-            string carStatus = !String.IsNullOrEmpty(CarStatusTextBox.Text) ? CarStatusTextBox.Text : "";
+            Car car;
 
-            Car car = new Car(brand, model, totalCost, yearOfProduction, mileage, fuel, carType, seats, color, carStatus);
+            try
+            {
+                var brand = !String.IsNullOrEmpty(BarndTextBox.Text) ? BarndTextBox.Text : "";
+                var model = !String.IsNullOrEmpty(ModelTextBox.Text) ? ModelTextBox.Text : "";
+                var totalCost = Convert.ToInt32(!String.IsNullOrEmpty(TotalCostTextBox.Text) ? TotalCostTextBox.Text : null);
+                var yearOfProduction = Convert.ToInt32(!String.IsNullOrEmpty(YearOfProductionTextBox.Text) ? YearOfProductionTextBox.Text : null);
+                var mileage = Convert.ToInt32(!String.IsNullOrEmpty(MileageTextBox.Text) ? MileageTextBox.Text : null);
+                string fuel = !String.IsNullOrEmpty(FuelTextBox.Text) ? FuelTextBox.Text : "";
+                string carType = !String.IsNullOrEmpty(CarTypeTextBox.Text) ? CarTypeTextBox.Text : "";
+                int seats = Convert.ToInt32(!String.IsNullOrEmpty(SeatsTextBox.Text) ? SeatsTextBox.Text : null);
+                string color = !String.IsNullOrEmpty(ColorTextBox.Text) ? ColorTextBox.Text : "";
+                string carStatus = !String.IsNullOrEmpty(CarStatusTextBox.Text) ? CarStatusTextBox.Text : "";
+
+                car = new Car(brand, model, totalCost, yearOfProduction, mileage, fuel, carType, seats, color, carStatus);
+            }
+            catch (FormatException)
+            {
+                MessageBox.Show("Invalid data format.", "Added Car");
+                return;
+            }
 
             if (car.IsEmpty())
             {
@@ -67,6 +77,7 @@ namespace UTCClient.Views
             }
 
             viewModel.AddCar(car);
+            ClearTextBoxes();
             MessageBox.Show("Record has been added.", "Added Car");
         }
 
@@ -168,6 +179,20 @@ namespace UTCClient.Views
             }
 
             return list;
+        }
+
+        private void ClearTextBoxes()
+        {
+            BarndTextBox.Text = null;
+            ModelTextBox.Text = null;
+            TotalCostTextBox.Text = null;
+            YearOfProductionTextBox.Text = null;
+            MileageTextBox.Text = null;
+            FuelTextBox.Text = null;
+            CarTypeTextBox.Text = null;
+            SeatsTextBox.Text = null;
+            ColorTextBox.Text = null;
+            CarStatusTextBox.Text = null;
         }
     }
 }
